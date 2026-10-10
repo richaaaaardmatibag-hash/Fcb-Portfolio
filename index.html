@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+<!-- favicon -->
+<link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+<link rel="shortcut icon" href="./favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+<link rel="manifest" href="./site.webmanifest" />
+
+
+    <title>Richard - Web Developer</title>
+    <style data-purpose="base-layout">
+      /* Global Resets & Typography */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #0f172a;
+        background-color: #f8fafc;
+        line-height: 1.6;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+    </style>
+    <style data-purpose="header-navigation">
+      /* Navigation Bar */
+      header {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 4.5rem;
+      }
+
+      .brand-logo {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #1e3a8a;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.75rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #475569;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover {
+        color: #2563eb;
+      }
+    </style>
+    <style data-purpose="section-headings">
+      /* Generic Section Header */
+      .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        color: #0f172a;
+        margin-bottom: 2rem;
+        letter-spacing: -0.025em;
+      }
+
+      section {
+        padding: 4.5rem 0;
+      }
+    </style>
+    <style data-purpose="hero-section">
+      /* Hero Section */
+      .hero-layout {
+        display: flex;
+        align-items: center;
+        gap: 3.5rem;
+      }
+
+      .hero-avatar-wrapper {
+        flex: 0 0 320px;
+        height: 320px;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
+      .hero-content {
+        flex: 1;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #0f172a;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-content h2 {
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: #2563eb;
+        margin-bottom: 1rem;
+      }
+
+      .hero-content p {
+        font-size: 1.05rem;
+        color: #475569;
+        line-height: 1.6;
+        margin-bottom: 1.75rem;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        text-align: center;
+      }
+
+      .btn-primary {
+        background-color: #2563eb;
+        color: #ffffff;
+        border: 1px solid #2563eb;
+      }
+
+      .btn-primary:hover {
+        background-color: #1d4ed8;
+        border-color: #1d4ed8;
+      }
+
+      .btn-secondary {
+        background-color: #ffffff;
+        color: #334155;
+        border: 1px solid #cbd5e1;
+      }
+
+      .btn-secondary:hover {
+        background-color: #f1f5f9;
+        color: #0f172a;
+      }
+    </style>
+    <style data-purpose="about-section">
+      /* About Me Section */
+      .about-box {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 24px;
+        padding: 3rem 2.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+      }
+
+      .about-box p {
+        font-size: 1.05rem;
+        color: #475569;
+        line-height: 1.8;
+        text-align: center;
+      }
+    </style>
+    <style data-purpose="projects-section">
+      /* Projects Section */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+      }
+
+      .project-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+      }
+
+      .project-image-box {
+        width: 100%;
+        height: 190px;
+        background-color: #64748b;
+        overflow: hidden;
+      }
+
+      .project-card-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .project-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.75rem;
+      }
+
+      .project-card p {
+        font-size: 0.925rem;
+        color: #64748b;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+      }
+
+      .project-btn {
+        align-self: flex-start;
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        background-color: #2563eb;
+        color: #ffffff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+      }
+
+      .project-btn:hover {
+        background-color: #1d4ed8;
+      }
+    </style>
+    <style data-purpose="skills-section">
+      /* Skills and Tools Section */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .skills-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+        overflow: hidden;
+      }
+
+      .skills-card h3 {
+        background-color: #f8fafc;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1e3a8a;
+        text-align: center;
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .skills-card ul {
+        list-style: none;
+        padding: 0.5rem 0;
+      }
+
+      .skills-card li {
+        padding: 0.65rem 1.5rem;
+        border-bottom: 1px solid #f1f5f9;
+        color: #334155;
+        font-size: 0.95rem;
+      }
+
+      .skills-card li:last-child {
+        border-bottom: none;
+      }
+    </style>
+    <style data-purpose="contacts-section">
+      /* Contacts Section */
+      .contacts-box {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 24px;
+        padding: 3rem 2.5rem;
+        text-align: center;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .contacts-box p {
+        font-size: 1rem;
+        color: #334155;
+        margin: 0.6rem 0;
+      }
+
+      .contacts-box a {
+        color: #2563eb;
+        text-decoration: underline;
+      }
+
+      .contacts-box a:hover {
+        color: #1d4ed8;
+      }
+    </style>
+    <style data-purpose="footer">
+      /* Footer Section */
+      footer {
+        background-color: #0f172a;
+        border-top: 1px solid #1e293b;
+        padding: 1.5rem 0;
+        text-align: center;
+        margin-top: auto;
+      }
+
+      footer p {
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+    </style>
+    <style data-purpose="responsive-design">
+      /* Responsive Media Queries */
+      @media (max-width: 900px) {
+        .projects-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-layout {
+          flex-direction: column;
+          text-align: center;
+          gap: 2rem;
+        }
+
+        .hero-avatar-wrapper {
+          flex: 0 0 240px;
+          width: 240px;
+          height: 240px;
+        }
+
+        .hero-buttons {
+          justify-content: center;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .nav-container {
+          flex-direction: column;
+          height: auto;
+          padding: 1.25rem 0;
+          gap: 0.75rem;
+        }
+
+        .nav-links {
+          gap: 1.25rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .about-box,
+        .contacts-box {
+          border-radius: 16px;
+          padding: 2rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- BEGIN: MainHeader -->
+    <header>
+      <div class="container nav-container" data-purpose="navigation-bar">
+        <!-- EDIT: NAVBAR_BRAND -->
+        <a class="brand-logo" href="#">Web Developer</a>
+        <!-- Primary page navigation -->
+        <nav>
+          <ul class="nav-links">
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <a href="#projects">Projects</a>
+            </li>
+            <li>
+              <a href="#skills">Skills/Tools</a>
+            </li>
+            <li>
+              <a href="#contacts">Contacts</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- END: MainHeader -->
+    <!-- BEGIN: MainContent -->
+    <main>
+      <!-- BEGIN: HeroSection -->
+      <section data-purpose="hero-section" id="hero">
+        <div class="container hero-layout">
+          <!-- Hero profile image placeholder container -->
+          <div class="hero-avatar-wrapper">
+            <!-- EDIT: PROFILE_IMAGE -->
+            <img alt="Profile Image" src="./profile.jpg" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <!-- Hero text description and calls to action -->
+          <div class="hero-content">
+            <!-- EDIT: NAME -->
+            <h1>Richard Jayson Matibag</h1>
+            <!-- EDIT: JOB_TITLE -->
+            <h2>Web Developer</h2>
+            <!-- EDIT: SHORT_INTRODUCTION -->
+            <p>Explore my web developer portfolio featuring responsive website design, front-end and back-end development, website optimization, and user-friendly web solutions.</p>
+            <div class="hero-buttons">
+              <a class="btn-primary" href="#projects">View My Projects</a>
+              <a class="btn-secondary" href="#contacts">Contact Me</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: HeroSection -->
+      <!-- BEGIN: AboutSection -->
+      <section data-purpose="about-section" id="about">
+        <div class="container">
+          <h2 class="section-title">About Me</h2>
+          <!-- Large framed presentation box matching wireframe shape -->
+          <div class="about-box">
+            <!-- EDIT: ABOUT_YOU -->
+            <p>I am a web developer passionate about building responsive, user-friendly, and visually appealing websites that meet modern web standards. My skills include website development, front-end and back-end technologies, website optimization, and creating seamless user experiences across different devices. I focus on writing clean, maintainable code and developing functional web solutions that align with business goals and user needs. I enjoy exploring new web technologies and turning ideas into practical, accessible, and engaging digital experiences.</p>
+          </div>
+        </div>
+      </section>
+      <!-- END: AboutSection -->
+      <!-- BEGIN: ProjectsSection -->
+      <section data-purpose="projects-section" id="projects">
+                <div class="container">
+          <!-- Responsive grid with 3 cards matching wireframe composition -->
+          <div class="projects-grid">
+            <!-- Project Card 1 -->
+            <article class="project-card">
+              <div class="project-image-box">
+                <!-- EDIT: PROJECT_IMAGE -->
+                <img alt="Project Preview" src="https://www.newsletterstation.com/news/uploads/9/responsive-website-600450.jpg" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
+              <div class="project-card-content">
+                <!-- EDIT: PROJECT_TITLE -->
+                <h3>Responsive Business Website</h3>
+                <!-- EDIT: PROJECT_DESCRIPTION -->
+                <p>SA proposed responsive business website designed to showcase services, company information, and contact details across desktop, tablet, and mobile devices. The project focuses on modern web design, mobile-friendly layouts, and user-friendly navigation to help businesses establish a professional online presence.</p>
+                <!-- EDIT: PROJECT_LINK -->
+                <a class="project-btn" href="#">Project Link</a>
+              </div>
+            </article>
+            <!-- Project Card 2 -->
+            <article class="project-card">
+              <div class="project-image-box">
+                <!-- EDIT: PROJECT_IMAGE -->
+                <img alt="Project Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMjVvDBW__hzH5kS22sy-fz2AdSDxvGLgumB96Lu-7Xh_WjalIr-DwhL_T&s=10" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
+              <div class="project-card-content">
+                <!-- EDIT: PROJECT_TITLE -->
+                <h3>E-Commerce Website Interface</h3>
+                <!-- EDIT: PROJECT_DESCRIPTION -->
+                <p>A proposed e-commerce website featuring product listings, category filters, product detail pages, and a streamlined shopping interface. This project demonstrates front-end web development, responsive design, and intuitive user experiences that help customers browse products and navigate an online store .</p>
+                <!-- EDIT: PROJECT_LINK -->
+                <a class="project-btn" href="#">Project Link</a>
+              </div>
+            </article>
+            <!-- Project Card 3 -->
+            <article class="project-card">
+              <div class="project-image-box">
+                <!-- EDIT: PROJECT_IMAGE -->
+                <img alt="Project Preview" src="https://www.slideegg.com/image/catalog/10220-powerpoint-design-portfolio.png" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
+              <div class="project-card-content">
+                <!-- EDIT: PROJECT_TITLE -->
+                <h3> Personal Portfolio Website</h3>
+                <!-- EDIT: PROJECT_DESCRIPTION -->
+                <p>A proposed personal portfolio website featuring a professional introduction, project showcase, technical skills, and a contact form. Built with responsive web design and modern web development practices, it provides a clear way to present technical expertise, highlight projects, and connect with potential clients or employers.</p>
+                <!-- EDIT: PROJECT_LINK -->
+                <a class="project-btn" href="#">Project Link</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <!-- END: ProjectsSection -->
+      <!-- BEGIN: SkillsAndToolsSection -->
+      <section data-purpose="skills-and-tools-section" id="skills">
+        <div class="container">
+          <h2 class="section-title">Skills and Tools</h2>
+          <div class="skills-grid">
+            <!-- Skills Column Card -->
+            <div class="skills-card">
+              <h3>Skills</h3>
+              <!-- EDIT: SKILLS_LIST -->
+              <ul>
+                <li>Responsive Web Design</li>
+                <li>User Interface (UI) and User Experience (UX) Design</li>
+                <li>Front-End Web Development (HTML, CSS, JavaScript)</li>
+              </ul>
+            </div>
+            <!-- Tools Column Card -->
+            <div class="skills-card">
+              <h3>Tools / Technologies</h3>
+              <!-- EDIT: TOOLS_LIST -->
+              <ul>
+                <li>Bootstrap</li>
+                <li>Visual Studio Code</li>
+                <li>React.js</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: SkillsAndToolsSection -->
+      <!-- BEGIN: ContactsSection -->
+      <section data-purpose="contacts-section" id="contacts">
+        <div class="container">
+          <h2 class="section-title">Contacts</h2>
+          <!-- Center rounded container for contact details -->
+          <div class="contacts-box">
+            <!-- EDIT: EMAIL -->
+            <p>Email : Richaaaaardmatibag@gmail.com</p>
+            <!-- EDIT: CONTACT_INFO -->
+            <p>Contacts : 09761513795</p>
+            <!-- EDIT: SOCIAL_LINK -->
+            <p>Social Media : <a href="https://www.facebook.com/">Social Media Link</a>
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- END: ContactsSection -->
+    </main>
+    <!-- END: MainContent -->
+    <!-- BEGIN: MainFooter -->
+    <footer data-purpose="page-footer">
+      <div class="container">
+        <!-- EDIT: FOOTER -->
+        <p>© 2026  Richard Jayson Matibag. All rights reserved.</p>
+      </div>
+    </footer>
+    <!-- END: MainFooter -->
+  </body>
+</html>
